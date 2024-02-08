@@ -5,6 +5,7 @@ import { IoMdDoneAll } from "react-icons/io";
 import { FiEdit3 } from "react-icons/fi";
 import InputTodo from '../InputTodo/InputTodo';
 import CompletedTodo from '../CompletedTab/CompletedTodo';
+import EditTodo from '../EditTodo/EditTodo';
 
 const ShowTodo = () => {
     const [isCompleted, setIsCompleted]= useState(false); /// For Toggle Button All or Complete Tab //
@@ -13,6 +14,7 @@ const ShowTodo = () => {
     const [todoTitle, setTodoTitle]= useState('');
     const [todoDescription, setTodoDescription]= useState('');
     const [todoPriority, setTodoPriority]= useState('');
+    const [toggleEdit, setToggleEdit]= useState(false);
 
 //// Submit Button ////
     const handleSubmitButton=()=>{
@@ -41,8 +43,14 @@ const handleComplete=(e)=>{
 }
 
 //// Handle Edit Button ////
-const handleEdit=()=>{
-    
+const handleEdit=(e)=>{
+    const getEditableTodo= allTodo.find(todo=>todo===e);
+    setToggleEdit(true);
+    setAllTodo({title:getEditableTodo.title, description:getEditableTodo.description, priority:getEditableTodo.priority})
+
+//// Remove Editable From Local Storage ////
+    const filterAllTodoExpectGettingOne=allTodo.filter(todo=>todo!==e);
+    localStorage.setItem('todo', JSON.stringify(filterAllTodoExpectGettingOne));
 }
 
 /// Render from LocalStorage////
@@ -57,6 +65,14 @@ useEffect(()=>{
     }
 },[])
 
+const handleLocalStorageAfterEdit=(e)=>{
+    console.log(e);
+    const getLocalStorageTodo= JSON.parse(localStorage.getItem('todo'));
+    const afterEditTodo=[...getLocalStorageTodo, e]
+    setAllTodo(afterEditTodo)
+    localStorage.setItem('todo', JSON.stringify(afterEditTodo))
+}
+
     return (
         <div>
             <InputTodo setTodoTitle={setTodoTitle} setTodoDescription={setTodoDescription} handleSubmitButton={handleSubmitButton} setTodoPriority={setTodoPriority}/>
@@ -67,6 +83,7 @@ useEffect(()=>{
             </div>
 
         {/* /////////Ant Design Ui Component////// */}
+        { toggleEdit===true ? <EditTodo allTodo={allTodo} handleLocalStorageAfterEdit={handleLocalStorageAfterEdit}></EditTodo> :
             <div className='mt-10'>
                 <Row className='flex justify-center'>
                 {new Array(1).fill(0).map((_, index) => {
@@ -96,6 +113,7 @@ useEffect(()=>{
                 })}
                 </Row>
             </div>
+        }
             {isCompleted===true && completeTab.map((todo, index)=><CompletedTodo key={index} todo={todo} handleDelete={handleDelete} completeTab={completeTab} setCompleteTab={setCompleteTab}/>)}
         </div>
 
