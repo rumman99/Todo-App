@@ -1,6 +1,6 @@
 Live Site: https://todo-app-puce-eta.vercel.app
 
-Fully Functional React Todo-App using TailwindCss, Ant Design UI components and implement Localstorage for saving Todos. User can Mark as Complete their todo and also can see completed todos anytime from Completed Tab. 3 Type Of user Priority Available right now High, Medium and Low.
+Fully Functional React Todo-App using TailwindCss, Ant Design UI components and implement Localstorage for saving Todos. User can Mark as Complete their todo and also can see completed todos anytime from Completed Tab. 3 Type Of user Priority Available right now High, Medium and Low. User can Read, Add, Delete and modify their todos any time :)
                                 
                                 ##TODO App##
                              
