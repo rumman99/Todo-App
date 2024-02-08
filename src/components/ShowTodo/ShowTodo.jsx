@@ -6,6 +6,8 @@ import { FiEdit3 } from "react-icons/fi";
 import InputTodo from '../InputTodo/InputTodo';
 import CompletedTodo from '../CompletedTab/CompletedTodo';
 import EditTodo from '../EditTodo/EditTodo';
+import { Bounce, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ShowTodo = () => {
     const [isCompleted, setIsCompleted]= useState(false); /// For Toggle Button All or Complete Tab //
@@ -22,6 +24,17 @@ const ShowTodo = () => {
         const updatedTodo=[...allTodo, newTodo];
         setAllTodo(updatedTodo);
         localStorage.setItem('todo', JSON.stringify(updatedTodo));
+
+    /// Alert Style ///
+        toast.success("Todo Added",{position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,});
     }
 
 //// Delete Button/////
@@ -40,6 +53,17 @@ const handleComplete=(e)=>{
         localStorage.setItem('completedTodo', JSON.stringify(allCompletedTodos))
         setCompleteTab(allCompletedTodos);
         handleDelete(e);
+
+    /// Alert Style ///
+        toast.info("Mark as Completed",{position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,});
 }
 
 //// Handle Edit Button ////
@@ -65,15 +89,17 @@ useEffect(()=>{
     }
 },[])
 
+/// Handle Edited Todo here after Edit ///
 const handleLocalStorageAfterEdit=(e)=>{
     const getLocalStorageTodo= JSON.parse(localStorage.getItem('todo'));
     const afterEditTodo=[...getLocalStorageTodo, e]
     setAllTodo(afterEditTodo)
-    localStorage.setItem('todo', JSON.stringify(afterEditTodo))
+    localStorage.setItem('todo', JSON.stringify(afterEditTodo));
 }
 
     return (
         <>
+        {/* Conditional Rendering for Edit Task */}
         { toggleEdit===true ? <EditTodo allTodo={allTodo} handleLocalStorageAfterEdit={handleLocalStorageAfterEdit}></EditTodo> :
         <div>
             <InputTodo setTodoTitle={setTodoTitle} setTodoDescription={setTodoDescription} handleSubmitButton={handleSubmitButton} setTodoPriority={setTodoPriority}/>

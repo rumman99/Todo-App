@@ -1,6 +1,7 @@
 import { Col, Row } from "antd";
 import { FiEdit3 } from "react-icons/fi";
 import { RiDeleteBin5Fill } from "react-icons/ri";
+import { Bounce, toast } from "react-toastify";
 
 const CompletedTodo = ({todo, completeTab, setCompleteTab}) => {
 
@@ -10,6 +11,17 @@ const handleDelete=(e)=>{
     if(completeTab){
         localStorage.setItem('completedTodo', JSON.stringify(allTodoAfterDelete));
         setCompleteTab(allTodoAfterDelete);
+
+        /// Alert Style ///
+        toast.success("Deleted",{position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,});
     }
 }
 

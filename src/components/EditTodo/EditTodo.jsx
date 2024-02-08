@@ -2,6 +2,7 @@ import {Button, Input} from "antd";
 import { useState } from "react";
 import { FiEdit3 } from "react-icons/fi";
 
+
 const EditTodo = ({allTodo, handleLocalStorageAfterEdit}) => {
     const [editableForm, setEditableForm]= useState({...allTodo})
 
@@ -11,7 +12,6 @@ const EditTodo = ({allTodo, handleLocalStorageAfterEdit}) => {
     };
 
     const handleEditedValueSubmit=(e)=>{
-        // const previousTodo= [...allTodo];
         handleLocalStorageAfterEdit(e);
         window.location.reload(false);
     }
