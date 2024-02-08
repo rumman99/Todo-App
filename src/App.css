@@ -6,6 +6,15 @@ body{
     overflow: hidden;
 }
 
+.responsive p{
+    color: rgb(136 136 139);
+    font-weight: 600;
+}
+
+.responsive h5{
+    color: springgreen
+}
+
 .btn-style .active{
     background-color: #007FFF;
 }
