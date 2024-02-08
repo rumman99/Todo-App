@@ -1,11 +1,14 @@
 body{
     background: #36454F;
 }
+.responsive{
+    text-overflow: clip;
+    overflow: hidden;
+}
 
 .btn-style .active{
     background-color: #007FFF;
 }
-
-.icon-style :hover{
-    color: #FF003F;
+.icon-style{
+    margin-top: 10px;
 }
