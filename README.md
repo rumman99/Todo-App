@@ -1,4 +1,8 @@
-                             ##TODO App##
+Live Site: https://todo-app-puce-eta.vercel.app
+
+Fully Functional React Todo-App using TailwindCss, Ant Design UI components and implement Localstorage for saving Todos. User can Mark as Complete their todo and also can see completed todos anytime from Completed Tab. 3 Type Of user Priority Available right now High, Medium and Low.
+                                
+                                ##TODO App##
                              
 Description:
 Your task is to create a simple Todo List application using React (reactjs/NextJS). The
@@ -31,11 +35,15 @@ data (if needed).
 Run This App:
 1. Clone this repository in your Local Storage.
 2. Open Todo App folder and inside this folder run this 2 Command:
-        1. npm install.
-        2. npm run dev.
-    It will run on your local server....
 
-                                ##ENJOY##
+        <!-- 1. npm install. -->
+        <!-- 2. npm run dev. -->
+    It will run on your local server.... :)
+
+                                    ##ENJOY##
+
+Future Work: Will implement Database so that Todos will be available from any location. Also will add Login/Logout with registration feature so that user handle App see based on their details.
+
 
 # React + Vite
 
