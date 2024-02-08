@@ -14,7 +14,7 @@ const ShowTodo = () => {
     const [todoTitle, setTodoTitle]= useState('');
     const [todoDescription, setTodoDescription]= useState('');
     const [todoPriority, setTodoPriority]= useState('');
-    const [toggleEdit, setToggleEdit]= useState(false);
+    const [toggleEdit, setToggleEdit]= useState(false); //Toggle for Editable Component //
 
 //// Submit Button ////
     const handleSubmitButton=()=>{
@@ -66,7 +66,6 @@ useEffect(()=>{
 },[])
 
 const handleLocalStorageAfterEdit=(e)=>{
-    console.log(e);
     const getLocalStorageTodo= JSON.parse(localStorage.getItem('todo'));
     const afterEditTodo=[...getLocalStorageTodo, e]
     setAllTodo(afterEditTodo)
@@ -74,6 +73,8 @@ const handleLocalStorageAfterEdit=(e)=>{
 }
 
     return (
+        <>
+        { toggleEdit===true ? <EditTodo allTodo={allTodo} handleLocalStorageAfterEdit={handleLocalStorageAfterEdit}></EditTodo> :
         <div>
             <InputTodo setTodoTitle={setTodoTitle} setTodoDescription={setTodoDescription} handleSubmitButton={handleSubmitButton} setTodoPriority={setTodoPriority}/>
 
@@ -83,7 +84,6 @@ const handleLocalStorageAfterEdit=(e)=>{
             </div>
 
         {/* /////////Ant Design Ui Component////// */}
-        { toggleEdit===true ? <EditTodo allTodo={allTodo} handleLocalStorageAfterEdit={handleLocalStorageAfterEdit}></EditTodo> :
             <div className='mt-10'>
                 <Row className='flex justify-center'>
                 {new Array(1).fill(0).map((_, index) => {
@@ -113,10 +113,11 @@ const handleLocalStorageAfterEdit=(e)=>{
                 })}
                 </Row>
             </div>
-        }
+        
             {isCompleted===true && completeTab.map((todo, index)=><CompletedTodo key={index} todo={todo} handleDelete={handleDelete} completeTab={completeTab} setCompleteTab={setCompleteTab}/>)}
         </div>
-
+    }
+        </>
     );
 };
 
